@@ -18,7 +18,7 @@ function removeRouteFromEmail(email:string) {
 
 export async function setRouteRelay(userEmail:string, userInfo:any) {
     let myEpitechToken = await refreshMyEpitechToken(userInfo['cookies']);
-    app.get("/" + userEmail + "/epitest/me/:year", async (req, res) => {
+    app.get("/" + userEmail + "/epitest/*", async (req, res) => {
         try {
             let content = await executeEpitestRequest(req, myEpitechToken);
             if (content.status == 401) {
@@ -44,7 +44,7 @@ async function accountRoute() {
             const email = req.params.email;
             if (email !== undefined) {
                 if (removeRouteFromEmail(email) === 0)
-                    res.status(200).send({ message: "Route delete" });
+                    res.status(200).send({ message: "Route deleted" });
                 else
                     res.status(400).send({ message: "email not found" });
             } else
