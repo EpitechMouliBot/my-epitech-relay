@@ -20,7 +20,7 @@ export async function executeBDDApiRequest(endpoint:string, params:string, metho
 export async function executeEpitestRequest(req: express.Request, token: string) {
     const res = await axios({
         baseURL: "https://api.epitest.eu/",
-        url: `me/${req.params.year}`,
+        url: req.params['0'],
         headers: {
             "Authorization": "Bearer " + token,
             "Origin": "my.epitech.eu"
